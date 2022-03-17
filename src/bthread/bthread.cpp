@@ -61,6 +61,10 @@ pthread_mutex_t g_task_control_mutex = PTHREAD_MUTEX_INITIALIZER;
 // Referenced in rpc, needs to be extern.
 // Notice that we can't declare the variable as atomic<TaskControl*> which
 // are not constructed before main().
+/**
+ * @ rekyyang's comments:
+ * global singleton object, created by function get_or_new_task_control
+ */
 TaskControl* g_task_control = NULL;
 
 extern BAIDU_THREAD_LOCAL TaskGroup* tls_task_group;

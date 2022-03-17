@@ -54,7 +54,11 @@ void run_worker_startfn() {
         g_worker_startfn();
     }
 }
-
+/**
+ * @ rekyyang's comments:
+ * 工作线程，会创建thread local的taskGroup
+ * worker loop在g->run_main_task()
+ */
 void* TaskControl::worker_thread(void* arg) {
     run_worker_startfn();    
 #ifdef BAIDU_INTERNAL
@@ -142,7 +146,10 @@ TaskControl::TaskControl()
     // calloc shall set memory to zero
     CHECK(_groups) << "Fail to create array of groups";
 }
-
+/**
+ * @ rekyyang's comments:
+ * tc根据concurrency创建工作线程
+ */
 int TaskControl::init(int concurrency) {
     if (_concurrency != 0) {
         LOG(ERROR) << "Already initialized";

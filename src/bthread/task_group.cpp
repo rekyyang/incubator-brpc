@@ -141,7 +141,10 @@ bool TaskGroup::wait_task(bthread_t* tid) {
 static double get_cumulated_cputime_from_this(void* arg) {
     return static_cast<TaskGroup*>(arg)->cumulated_cputime_ns() / 1000000000.0;
 }
-
+/**
+ * @ rekyyang's comments:
+ * wait_task
+ */
 void TaskGroup::run_main_task() {
     bvar::PassiveStatus<double> cumulated_cputime(
         get_cumulated_cputime_from_this, this);
